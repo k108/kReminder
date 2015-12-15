@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1"
+    android:versionName="1.0"
+    package="com.kaushik.android.reminder" >
+
+    <uses-sdk
+        android:minSdkVersion="4"
+        android:targetSdkVersion="16" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name="com.kaushik.android.reminder.ReminderLaunchActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kaushik.android.reminder.ReminderListActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.kaushik.android.reminder.ReminderEditActivity"
+            android:label="@string/edit_reminder_title" />
+        <activity
+            android:name="com.kaushik.android.reminder.ReminderListAndEditorActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.kaushik.android.reminder.TaskPreferences"
+            android:label="@string/app_name" />
+
+        <receiver
+            android:name="com.kaushik.android.reminder.OnBootReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.kaushik.android.reminder.OnAlarmReceiver" />
+
+        <service android:name="com.kaushik.android.reminder.ReminderService" />
+
+        <provider
+            android:name="com.kaushik.android.reminder.ReminderProvider"
+            android:authorities="com.dummies.android.taskreminder.ReminderProvider"
+            android:exported="false" />
+    </application>
+
+</manifest>
